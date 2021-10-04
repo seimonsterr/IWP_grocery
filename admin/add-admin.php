@@ -6,7 +6,12 @@
             Add Admin
         </h1>
         <br>
+        <?php if(isset($_SESSION['add'])){
+                    echo $_SESSION['add'];
+                    unset ($_SESSION['add']);
+            }?>
 
+            <br><br><br>
         <form action="" method="POST">
             <table class="tbl-30">
                 <tr>
@@ -46,7 +51,7 @@
 <?php
 if(isset($_POST['submit'])){
     $full_name=$_POST['name'];
-    echo $username=$_POST['username'];
+     $username=$_POST['username'];
     $password=md5($_POST['password']);
 
 
@@ -54,11 +59,26 @@ if(isset($_POST['submit'])){
     //to insert to sql table
 
     $sql="INSERT into tbl_admin SET
-    full_name='$full_name',
+    fullname='$full_name',
     username='$username',
     password='$password'
     ";
 
-    // $res=mysqli_query($conn,$sql) or die(mysqli_error());
+    $res=mysqli_query($conn,$sql) or die(mysqli_error($conn));
+
+    //to check if query is properly executed or not
+
+    if($res==TRUE){
+        // echo "data inserted";
+        $_SESSION['add']="<div class='success'>Admin added successfully</div>";
+          //redirect to manage admin page
+        header('location:'.SITEURL.'admin/manage-admin.php');
+    }
+    else{
+        //  echo "failed to insert data";
+        $_SESSION['add']="<div class='error'>Failed to  add Admin</div> ";
+          //redirect to manage admin page
+        header('location:'.SITEURL.'admin/add-admin.php');
+    }
 }
 ?>

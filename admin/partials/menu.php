@@ -1,3 +1,5 @@
+
+<?php include('../config/constants.php'); ?>
 <html>
     <head>
         <title>grocery store admin</title>
@@ -14,6 +16,7 @@
             <li><a href="manage-category.php">Category</a></li>
            <li><a href="manage-item.php">Food</a></li>
            <li> <a href="manage-order.php">Order</a></li>
+           <li> <a href="logout.php">Logout</a></li>
 </ul>
         </nav>
         </div>

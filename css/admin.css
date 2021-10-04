@@ -128,6 +128,22 @@
     background-color:#ff4757;
  }
 
+ .success{
+   color:var(--green);
+ }
+ .error{
+   color:#ff4757;
+ }
+
+
+
+
+ .login{
+   border:3px solid grey;
+   width:20%;
+   margin:10% auto;
+   padding:2%;
+ }
   /* footer */
 .footer{
     background-color: #abe9cd;
