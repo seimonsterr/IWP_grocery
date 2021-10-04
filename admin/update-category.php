@@ -117,6 +117,36 @@ include('partials/menu.php');
             //to check whether img is available or not
             if(image_name!=""){
                 //we will upload new image and remove the current image
+                $ext = pathinfo($_FILES["image"]["name"])['extension'];
+                // $ext=end(explode('.',image_name));//gets extension of the picture
+
+                $image_name="Item_Category_".time().'.'.$ext;
+
+                $source_path=$_FILES['image']['tmp_name'];
+                $destination_path="../images/category/".$image_name;
+
+                //upload
+                $upload=move_uploaded_file($source_path,$destination_path);
+
+                if($upload=false){
+                    $_SESSION['upload']="<div class='error'>Failed to  upload Image </div>";
+                    header('location:'.SITEURL.'admin/manage-category.php');
+
+                    die();//since if image not uploaded we dont want to insert in our database
+                }
+
+                //now to remove our current image if available
+                if($current_image!=""){
+                    $remove_path="../images/category/".$current_image;
+                    $remove=unlink($remove_path);
+                    //to check whether the image is removed or not
+                    if($remove==false){
+                        $_SESSION['failed-remove']="<div class='error'>Failed to remove current image</div>";
+                        header('location:'.SITEURL.'admin/manage-category.php');
+                        die();//will stop the process
+                    }
+                }
+
 
             }
             else{
@@ -131,6 +161,7 @@ include('partials/menu.php');
         //updating the database
           $sql2="UPDATE tbl_category SET
           title='$title',
+          image_name='$image_name',
           featured='$featured',
           active='$active'
           WHERE id=$id
