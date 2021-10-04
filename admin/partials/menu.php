@@ -1,5 +1,9 @@
 
-<?php include('../config/constants.php'); ?>
+<?php
+
+include('../config/constants.php');
+include('logincheck.php');
+?>
 <html>
     <head>
         <title>grocery store admin</title>

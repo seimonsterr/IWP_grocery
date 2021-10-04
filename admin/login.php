@@ -14,6 +14,11 @@
                 echo $_SESSION['login'];
                 unset ($_SESSION['login']);
                }
+             if(isset($_SESSION['no-login-message']))
+             {
+                 echo $_SESSION['no-login-message'];
+                 unset ($_SESSION['no-login-message']);
+             }
                ?>
                <br><br>
             <form action="" method="POST" class="text-center">
@@ -42,6 +47,7 @@ if(isset($_POST['submit'])){
 
     if($count==1){
         $_SESSION['login']="<div class='success'>login successful</div>";
+        $_SESSION['user']=$username;
         //redirect to manage admin page
       header('location:'.SITEURL.'admin/');
     }
