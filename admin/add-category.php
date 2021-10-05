@@ -98,11 +98,7 @@ include('partials/menu.php');?>
                 die();//since if image not uploaded we dont want to insert in our database
             }
         }
-        }
-         else{
-
-         }
-
+    }
        $sql="INSERT into tbl_category SET
        title='$title',
        image_name='$image_name',
@@ -126,7 +122,6 @@ include('partials/menu.php');?>
     }
 
     }
-
 
     ?>
 </div>

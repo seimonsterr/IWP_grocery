@@ -6,7 +6,7 @@
     <h1>Manage Items</h1>
     <br>
             <br>
-           <a href="" class="btn-primary">Add Items</a>
+           <a href="<?php echo SITEURL ;?>admin/add-item.php" class="btn-primary">Add Items</a>
            <br>
            <br>
                <table class="tbl-full">
